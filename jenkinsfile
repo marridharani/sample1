@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Public Build') {
+            steps {
+                echo 'Public repository build started'
+
+                // Intentionally fail the build
+                sh 'exit 1'
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo 'Public pipeline FAILED'
+            echo 'Triggering Private Pipeline...'
+
+            build job: 'Private-Pipeline'
+        }
+    }
+}
