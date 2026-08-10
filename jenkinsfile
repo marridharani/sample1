@@ -18,7 +18,7 @@ pipeline {
             echo 'Public pipeline FAILED'
             echo 'Triggering Private Pipeline...'
 
-            build job: 'practice1'
+            build job: 'practice1', wait: false
         }
     }
 }
